@@ -19,19 +19,27 @@ namespace HashParser{
 
         ~ConfigParser();
 
+        /* Check if a string is full with spaces, tabs, or other redundant character */
+        static bool isSpace(std::string toCheck);
+
+        /* Serialize a configFile line to a property-value pair */
+        void SerializeProperty(std::string);
+
+        /* Read and maintain all the configurations from the input file */
         void parse();
 
+        /* Return a value of a property */
         std::string GetConfigValue(std::string key);
 
-        static void SerializeProperty(std::string, std::unordered_map<std::string, std::string>);
-
-        //print all the property-value pairs
-        friend std::ostream& operator<<(std::ostream& out, HashParser::ConfigParser parser){
+        /* Print all the property-value pairs */
+        friend std::ostream& operator<<(std::ostream& out, HashParser::ConfigParser& parser){
             for(auto it = parser.configurations.begin(); it != parser.configurations.end(); ++it){
-                out<<it->first<<std::endl;
+                out<<"Property: "<<it->first<<" = "<<it->second<<std::endl;
             }
 
             return out;
         }
+
+        
     };
 }
