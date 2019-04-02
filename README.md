@@ -3,13 +3,14 @@ C++ Configuration files Parser
 
 Prerequisite:
 -gcc compiler
--linux-based OS (tested on Ubuntu)
+-linux-based OS (tested on Ubuntu) or Windows
 
 
 Build instructions:
--open a terminal
+-open a terminal(bash or cmd)
 -navigate to project src folder
--run: g++ -g -o ../build/ConfigurationParser ConfigParser.cpp main.cpp
+-Windows: run: cd ../ && mkdir build && cd src && g++ -g -o ../build/ConfigurationParser ConfigParser.cpp main.cpp
+-Linux: run g++ -g -o ../build/ConfigurationParser ConfigParser.cpp main.cpp
 
 Usage:
 -give a .ini file's path when running the executable and the tool will import every property-value pair to its internal data structure(unordered_map)
