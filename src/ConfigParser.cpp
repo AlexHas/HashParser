@@ -80,12 +80,14 @@ void ConfigParser::parse(){
         while(std::getline(this->configFile, lineFromFile)){
             //std::cout<<"Line From File: "<<lineFromFile<<std::endl;
             try{
-            ConfigParser::SerializeProperty(lineFromFile);
+                ConfigParser::SerializeProperty(lineFromFile);
             }catch(std::string message){
                 std::cout<<message<<std::endl;
                 break;
             }
         }
+
+        std::cout<<"Configuration loaded succesfully!"<<std::endl;
     }
     else{
         std::cout<<"Can't open the file: "<<this->fileName<<std::endl;
