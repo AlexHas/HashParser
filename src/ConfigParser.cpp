@@ -23,6 +23,22 @@ bool ConfigParser::isSpace(std::string toCheck){
             return isSpace;
 }
 
+bool ConfigParser::isComment(std::string line){
+
+    for(auto it = line.begin(); it != line.end(); ++it){
+        if(!(::isspace(*it))){
+            if((*it) == ';' || (*it) == '#'){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } 
+    }
+
+    return false;
+}
+
 void ConfigParser::SerializeProperty(std::string lineToMap){
     /* serialize and add to configurations */
     static int lineNumber = 0;
@@ -65,6 +81,8 @@ void ConfigParser::SerializeProperty(std::string lineToMap){
                     value.erase(std::remove_if(value.begin(), value.end(), ::isspace), value.end());
                 }
             }
+            std::transform(property.begin(), property.end(), property.begin(), ::toupper);
+
             this->configurations.insert(std::make_pair<>(property, value));
             //std::cout<<configurations[property]<<std::endl;
         }
@@ -79,11 +97,14 @@ void ConfigParser::parse(){
     if(configFile.is_open()){
         while(std::getline(this->configFile, lineFromFile)){
             //std::cout<<"Line From File: "<<lineFromFile<<std::endl;
-            try{
-                ConfigParser::SerializeProperty(lineFromFile);
-            }catch(std::string message){
-                std::cout<<message<<std::endl;
-                break;
+            /* Check if the line is a comment */
+            if(!(ConfigParser::isComment(lineFromFile))){
+                try{
+                    ConfigParser::SerializeProperty(lineFromFile);
+                }catch(std::string message){
+                    std::cout<<message<<std::endl;
+                    break;
+                }
             }
         }
 
@@ -96,5 +117,6 @@ void ConfigParser::parse(){
 }
 
 std::string ConfigParser::GetConfigValue(std::string key){
+    std::transform(key.begin(), key.end(), key.begin(), ::toupper);
     return this->configurations[key];
 }
