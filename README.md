@@ -10,16 +10,16 @@ Prerequisite:
 
 Build instructions:
 -run builder.py
--project executable will be built in ./build folder as an example
+-project demo executable will be built in ./build folder as an example
     and the library will be in ./lib
 
 Usage:
 -build the project
--include the header (include/ConfigPArser.hpp)
+-include the header (include/ConfigParser.hpp)
 -link the library(from lib folder)
 -instantiate a ConfigParser(namespace HashParser) with a .ini file path as an argument
 -call the parse() method
--use GetConfigValue(std::string key) function with the desired property as parameter which will return the value of it as a string
+-use GetConfigValue(std::string key) function with the desireds property as parameter which will return the value of it as a string
 
 E.G.:
 #include "../include/ConfigParser.hpp"
@@ -39,7 +39,7 @@ Advice: Build the project as a static/dynamic library and use it in your project
 
 
 .ini file rules:
--provide valid property=value pairs (properties with no values are not acceptes) 
+-provide valid property=value pairs (properties with no values are not accepted) 
         e.g.: server="127.0.0.1"
 -each value will be interpreted as string and the user has to convert it to its type: e.g. port=80, 80 has to be converted to int after the parsing is done.
 -whitespaces: --all of the whitespaces(' ', '\t', '\r', etc.) will be ignored, EXCEPT when they are between double quotes. 
