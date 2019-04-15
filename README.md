@@ -3,19 +3,23 @@ C++ Configuration files Parser
 
 Prerequisite:
 -gcc compiler
+-cmake builder
+-python 3
 -linux-based OS (tested on Ubuntu) or Windows
 
 
 Build instructions:
--open a terminal(bash or cmd)
--navigate to project src folder
--Windows: run: cd ../ && mkdir build && cd src && g++ -g -o ../build/ConfigurationParser ConfigParser.cpp main.cpp
--Linux: run:  g++ -g -o ../build/ConfigurationParser ConfigParser.cpp main.cpp
+-run builder.py
+-project executable will be built in ./build folder as an example
+    and the library will be in ./lib
 
 Usage:
--give a .ini file's (respect the rules presented on the bottom of this file) path when running the executable and the tool will import every property-value pair to its internal data structure(unordered_map)
-or hardcode it(not recommended) in ConfigParser() constructor call
--take advantage of this and use those properties for your customizable projects
+-build the project
+-include the header (include/ConfigPArser.hpp)
+-link the library(from lib folder)
+-instantiate a ConfigParser(namespace HashParser) with a .ini file path as an argument
+-call the parse() method
+-use GetConfigValue(std::string key) function with the desired property as parameter which will return the value of it as a string
 
 E.G.:
 #include "../include/ConfigParser.hpp"
