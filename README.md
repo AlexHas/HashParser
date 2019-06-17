@@ -11,7 +11,8 @@ Prerequisite:
 Build instructions:
 -run builder.py
 -project demo executable will be built in ./build folder as an example
-    and the library will be in ./lib
+    and the library will be in ./lib FOR LINUX
+-Visual Studio Project will be built in ./build/project folder FOR WINDOWS
 
 Usage:
 -build the project

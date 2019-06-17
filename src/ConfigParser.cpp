@@ -4,7 +4,7 @@
 
 using namespace HashParser;
 
-ConfigParser::ConfigParser():configFile(NULL), configurations(){}
+ConfigParser::ConfigParser():configFile(), configurations(){}
 
 ConfigParser::ConfigParser(std::string fileName):fileName(fileName), configFile(fileName), configurations(){}
 

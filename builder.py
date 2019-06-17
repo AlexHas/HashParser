@@ -1,6 +1,7 @@
 import os
+import platform
 
-buildCommand = """  
+buildCommandLinux = """  
                     sudo mkdir -p build/temporaryFiles &&
                     sudo mkdir -p lib
                     cd ./build/temporaryFiles &&
@@ -8,6 +9,12 @@ buildCommand = """
                     sudo make
                """
 
+buildCommandWindows = "mkdir build\project & cd build\project & cmake ../../"
+
 if __name__== "__main__":
-    os.system(buildCommand)
-    print("Your executable is on build/ConfigParser.")
+    if platform.system().lower() == "windows":
+        os.system(buildCommandWindows)
+        print("Your Visual Studio project is in build\Project.")
+    elif platform.system().lower() == "linux":
+        os.system(buildCommandLinux)
+        print("Your executable is on build/ConfigParser.")
