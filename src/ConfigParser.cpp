@@ -6,11 +6,11 @@ using namespace HashParser;
 
 ConfigParser::ConfigParser():configFile(), configurations(){}
 
-ConfigParser::ConfigParser(std::string fileName):fileName(fileName), configFile(fileName), configurations(){}
+ConfigParser::ConfigParser(const std::string& fileName):fileName(fileName), configFile(fileName), configurations(){}
 
 ConfigParser::~ConfigParser(){}
 
-bool ConfigParser::isSpace(std::string toCheck){
+bool ConfigParser::isSpace(const std::string& toCheck){
             bool isSpace = true;
 
             for(auto it = toCheck.begin(); it != toCheck.end(); ++it){
@@ -23,7 +23,7 @@ bool ConfigParser::isSpace(std::string toCheck){
             return isSpace;
 }
 
-bool ConfigParser::isComment(std::string line){
+bool ConfigParser::isComment(const std::string& line){
 
     for(auto it = line.begin(); it != line.end(); ++it){
         if(!(::isspace(*it))){
@@ -39,7 +39,7 @@ bool ConfigParser::isComment(std::string line){
     return false;
 }
 
-void ConfigParser::SerializeProperty(std::string lineToMap){
+void ConfigParser::SerializeProperty(const std::string& lineToMap){
     /* serialize and add to configurations */
     static int lineNumber = 0;
     std::stringstream stringStream(lineToMap);
@@ -116,7 +116,7 @@ void ConfigParser::parse(){
     
 }
 
-std::string ConfigParser::GetConfigValue(std::string key){
+const std::string& ConfigParser::GetConfigValue(std::string key){
     std::transform(key.begin(), key.end(), key.begin(), ::toupper);
     return this->configurations[key];
 }

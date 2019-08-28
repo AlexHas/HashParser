@@ -10,5 +10,5 @@ add_executable(
 )
 
 target_link_libraries(
-    UnitTests ConfigParserLibrary
+    UnitTests ConfigParserLibrary gtest gtest_main
 )
